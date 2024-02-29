@@ -2,12 +2,12 @@
 
 import { useMachine } from "@xstate/react";
 
-import { myFirstMachine } from "@/machines/first-machine";
+import { todosMachine } from "@/machines/todo.machine";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter } from "./ui/card";
 
 export const State = () => {
-  const [state, send] = useMachine(myFirstMachine);
+  const [state, send] = useMachine(todosMachine);
 
   return (
     <Card>
@@ -15,11 +15,11 @@ export const State = () => {
         <h1>State: {JSON.stringify(state.value)}</h1>
       </CardContent>
       <CardFooter className="justify-between gap-4">
-        <Button onClick={() => send({ type: "MOUSE_ENTER" })}>
-          Mouse Enter
+        <Button onClick={() => send({ type: "LOAD_SUCCESS" })}>
+          Loading Todos
         </Button>
-        <Button onClick={() => send({ type: "MOUSE_LEAVE" })}>
-          Mouse Leave
+        <Button onClick={() => send({ type: "LOAD_FAILED" })}>
+          Load Failed
         </Button>
       </CardFooter>
     </Card>
